@@ -1,0 +1,742 @@
+/* ==================================== */
+/* -- CSS Variables & Global Styles -- */
+/* ==================================== */
+/* Import CSS Leaflet: Penting untuk memuat style dasar Leaflet */
+@import "~leaflet/dist/leaflet.css";
+
+:root {
+  /* Tema Warna Ungu Tua (#50A -> #5000AA) */
+  --color-primary: #5000aa; 
+  --color-primary-dark: #3a007d; /* Shading gelap */
+  --color-primary-light: #6a00e5; /* Shading terang */
+  --color-accent: #00bcd4; /* Cyan/Teal untuk aksen */
+  --color-text-dark: #1f1f1f;
+  --color-text-light: #f5f5f5;
+  --color-background-light: #ffffff;
+  --color-background-soft: #f9f9f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Arial', sans-serif; 
+  color: var(--color-text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-light);
+}
+
+.container {
+  max-width: 1300px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* ==================================== */
+/* -- Header & Navigation -- */
+/* ==================================== */
+header {
+  background-color: var(--color-primary); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  view-transition-name: header-bar;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  padding-block: 15px;
+  gap: 30px;
+}
+
+/* Brand/H1 Styling */
+.brand-heading {
+  margin: 0; 
+}
+
+.brand-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-light); 
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  transition: opacity 0.2s;
+}
+.brand-name:hover {
+  opacity: 0.8;
+}
+
+/* Drawer & Button */
+.navigation-drawer {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  min-height: 100vh;
+  width: 250px;
+  padding: 20px 10px;
+  background-color: var(--color-background-light);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%);
+  transition: transform 350ms ease-in-out;
+  z-index: 9999;
+}
+
+.navigation-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-button {
+  display: inline-block;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--color-text-light);
+  padding: 8px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Nav List */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-list.auth-nav-list,
+.nav-list.user-nav-list {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.nav-list li a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--color-text-dark);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-list li a:hover,
+.nav-list li a:focus {
+  background-color: var(--color-primary); 
+  color: var(--color-text-light);
+}
+
+#toggle-push {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#toggle-push:hover {
+  background-color: #0056b3;
+}
+/* ==================================== */
+/* -- Main Content & Sticky Footer Setup -- */
+/* ==================================== */
+.main-content {
+  flex-grow: 1; 
+  padding-block: 40px; 
+  view-transition-name: main-content;
+}
+
+/* ==================================== */
+/* -- Footer Styles -- */
+/* ==================================== */
+footer {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-content p {
+  margin-block: 5px;
+}
+
+/* ==================================== */
+/* -- Utility Classes: Buttons -- */
+/* ==================================== */
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-primary); 
+  color: var(--color-text-light);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid var(--color-primary); 
+  border-radius: 6px;
+  background-color: var(--color-background-light);
+  color: var(--color-primary);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  border-color: var(--color-primary);
+}
+
+
+/* ==================================== */
+/* -- Aksesibilitas Styles -- */
+/* ==================================== */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
+  padding: 8px;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Skip to content anchor (diberi fokus oleh JS) */
+.skip-content-anchor:focus {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* Status Messages & Loading */
+.loading-text {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.status-box {
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+.status-box.success {
+  background-color: #e6f7ff; 
+  color: #004d99;
+  border: 1px solid #91d5ff;
+}
+.status-box.error {
+  background-color: #fff0f6; 
+  color: #a61d24;
+  border: 1px solid #ffadd2;
+}
+
+/* ==================================== */
+/* -- View Transition API Styles -- */
+/* ==================================== */
+
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  position: absolute;
+  inset: 0;
+}
+
+::view-transition-old(main-content) {
+  animation: fade-out 0.3s ease-out;
+}
+
+::view-transition-new(main-content) {
+  animation: fade-in 0.35s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* ==================================== */
+/* -- Home Page (Peta & List) -- */
+/* ==================================== */
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: var(--color-primary-dark);
+}
+
+/* Layout baru: Hapus grid di sini, biarkan elemen stack */
+.story-layout {
+  margin-top: 20px; 
+  gap: 30px;
+}
+
+.story-list-container h3,
+.story-map-container h3 {
+  margin-bottom: 15px;
+  color: var(--color-text-dark);
+}
+
+/* Story List */
+.story-list {
+  list-style: none;
+  padding: 0;
+  display: grid; 
+  gap: 20px;
+  /* Default 1 kolom untuk Mobile */
+  grid-template-columns: 1fr; 
+}
+
+.story-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  outline-offset: 4px;
+  background-color: var(--color-background-light);
+}
+
+.story-item:hover,
+.story-item:focus,
+.story-item.highlighted {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(80, 0, 170, 0.15); 
+}
+
+.story-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.story-content {
+  padding: 15px;
+}
+
+.story-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.story-location {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Map (Full Width) */
+.map-container,
+.map-area {
+  height: 350px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 15px;
+  border: 1px solid #ccc;
+}
+/* Karena map container berada di dalam container, ia akan memiliki padding */
+/* Jika Anda ingin PETA benar-benar FULL dari ujung layar ke ujung layar, 
+   Anda harus memindahkannya di luar elemen .container di index.html, atau 
+   menggunakan trik di halaman home JS (tidak disarankan). */
+
+
+/* ==================================== */
+/* -- Add Story Form -- */
+/* ==================================== */
+
+.story-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  gap: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: var(--color-background-soft);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.story-form fieldset {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.story-form legend {
+  font-weight: bold;
+  padding: 0 10px;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.form-control label span {
+    color: var(--color-primary);
+}
+
+.form-control input:not([type="radio"]),
+.form-control textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(80, 0, 170, 0.2);
+  outline: none;
+}
+
+.error-msg {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  min-height: 18px;
+  display: block;
+}
+
+.photo-upload {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.photo-preview {
+  margin-top: 15px;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.photo-preview img, .photo-preview video {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px; 
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Camera Stream */
+.camera-preview {
+    width: 100%;
+    object-fit: contain;
+}
+
+.location-info {
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #555;
+}
+.location-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.location-control-group button {
+    width: fit-content;
+}
+
+
+/* ==================================== */
+/* -- Tampilan Responsif -- */
+/* ==================================== */
+
+/* Tablet: 768px */
+@media screen and (min-width: 768px) {
+  /* Halaman Beranda: Daftar Story 2 kolom */
+  .story-list {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .location-control-group {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+  }
+}
+
+/* Desktop: 1024px */
+@media screen and (min-width: 1024px) {
+  /* Header: Navigasi horizontal */
+  .navigation-drawer {
+    position: static;
+    min-height: auto;
+    width: auto;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    transform: translateX(0);
+    display: flex;
+    gap: 20px;
+  }
+
+  .main-header {
+    justify-content: space-around;
+  }
+  
+  .nav-list {
+    flex-direction: row;
+    gap: 0 20px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list.auth-nav-list,
+  .nav-list.user-nav-list {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .nav-list li a {
+    color: var(--color-text-light);
+    padding: 6px 10px;
+    font-weight: 500;
+  }
+
+  .nav-list li a:hover,
+  .nav-list li a:focus {
+    background-color: var(--color-primary-dark);
+  }
+
+  .drawer-button {
+    display: none;
+  }
+
+  /* Halaman Beranda: Daftar Story 3 kolom (Sesuai Permintaan) */
+  .story-list {
+    grid-template-columns: repeat(3, 1fr); 
+  }
+}
+
+/* ==================================== */
+/* -- ABOUT PAGE STYLES -- */
+/* ==================================== */
+
+.about-content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-background-soft);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-primary-dark);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--color-primary-light);
+    padding-bottom: 5px;
+}
+
+.about-app-info p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.highlight {
+    font-weight: bold;
+    color: var(--color-primary);
+    background-color: rgba(80, 0, 170, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* --- Tech Grid --- */
+.tech-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 30px;
+}
+
+.tech-card {
+    background-color: var(--color-background-light);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid var(--color-accent); /* Aksen warna */
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tech-card h4 {
+    color: var(--color-primary);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.tech-card p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* --- Developer Card --- */
+.developer-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    padding: 25px;
+    background-color: var(--color-background-light);
+    border: 2px solid var(--color-primary-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(80, 0, 170, 0.1);
+}
+
+.developer-avatar {
+    flex-shrink: 0;
+}
+
+.avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--color-primary-light);
+}
+
+.developer-info {
+    flex-grow: 1;
+}
+
+.developer-info h4 {
+    color: var(--color-primary-dark);
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.developer-info p {
+    color: #444;
+    line-height: 1.6;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
+
+.separator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 30px 0;
+}
+
+/* Pastikan elemen gambar di dalam container tidak melampaui lebar container-nya */
+.photo-preview-container {
+    max-width: 100%; /* Batasi lebar container preview */
+    overflow: hidden; /* Sembunyikan jika ada konten yang meluber */
+    margin-bottom: 1rem;
+    /* Tambahkan gaya lain sesuai kebutuhan (misalnya padding) */
+}
+
+/* Mengatur ukuran video dan gambar hasil kamera/upload */
+.photo-preview-container img,
+.photo-preview-container video {
+    width: 100%; /* Membuat gambar dan video responsif terhadap container */
+    height: auto;
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+    border-radius: 8px; /* Contoh: Menambahkan sudut melengkung */
+}
+
+/* Mengatur ukuran PETA */
+.map-area {
+    width: 100%; /* Peta harus memenuhi lebar container-nya */
+    height: 350px; /* PETA WAJIB PUNYA TINGGI YANG JELAS */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+}

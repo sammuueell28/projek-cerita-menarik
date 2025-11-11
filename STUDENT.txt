@@ -1,0 +1,10 @@
+APP_URL github pages = https://sammuueell28.github.io/Cerita-Menarik/
+MAP_SERVICE_API_KEY=<api_key>
+
+Akses :
+localhost:9000
+silahkan register atau login
+
+Login bisa menggunakan akun berikut :
+email :sammuueell28@gmail.com
+pass : sam12345 
