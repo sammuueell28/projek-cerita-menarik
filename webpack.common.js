@@ -10,7 +10,7 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true, // Membersihkan folder dist sebelum build baru
-    publicPath: "/", // Agar Webpack tahu tempat mencari aset
+    publicPath: "/projek-cerita-menarik/", // Agar Webpack tahu tempat mencari aset
   },
 
   // KRITIS: Menangani path di leaflet.css
