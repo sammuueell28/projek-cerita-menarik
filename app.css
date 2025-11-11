@@ -356,20 +356,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	border-radius: 5px;
 	}
 .leaflet-control-layers-toggle {
-<<<<<<< HEAD
 	background-image: url(/images/layers..png);
-=======
-	background-image: url(/projek-cerita-menarik/images/layers..png);
->>>>>>> e494ebd509a41208b45b5264905ad793b0111538
 	width: 36px;
 	height: 36px;
 	}
 .leaflet-retina .leaflet-control-layers-toggle {
-<<<<<<< HEAD
 	background-image: url(/images/layers-2x..png);
-=======
-	background-image: url(/projek-cerita-menarik/images/layers-2x..png);
->>>>>>> e494ebd509a41208b45b5264905ad793b0111538
 	background-size: 26px 26px;
 	}
 .leaflet-touch .leaflet-control-layers-toggle {
@@ -412,11 +404,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 /* Default icon URLs */
 .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
-<<<<<<< HEAD
 	background-image: url(/images/marker-icon..png);
-=======
-	background-image: url(/projek-cerita-menarik/images/marker-icon..png);
->>>>>>> e494ebd509a41208b45b5264905ad793b0111538
 	}
 
 

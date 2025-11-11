@@ -3,10 +3,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="./favicon.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="/projek-cerita-menarik/favicon.png" />
     <title>Story Map App</title>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/projek-cerita-menarik/manifest.json" />
 
     <!-- Meta tags untuk PWA (preparation untuk kriteria 3) -->
     <meta name="description" content="Aplikasi untuk berbagi cerita menarik dengan peta lokasi." />
@@ -14,7 +14,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="CeritaMenarik" />
-    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/projek-cerita-menarik/icons/icon-192.png" />
+    <link rel="stylesheet" href="/projek-cerita-menarik/app.css" />
+    <script defer src="/projek-cerita-menarik/app.bundle.js"></script>
   </head>
 
   <body>
@@ -24,18 +26,14 @@
           <a class="brand-name" href="#/" tabindex="0">CeritaMenarik</a>
         </h1>
 
-        <nav
-          id="navigation-drawer"
-          class="navigation-drawer"
-          aria-label="Navigasi Utama"
-        >
+        <nav id="navigation-drawer" class="navigation-drawer" aria-label="Navigasi Utama">
           <ul id="nav-list" class="nav-list" role="list">
             <li><a href="#/" tabindex="0">Beranda</a></li>
             <li><a href="#/about" tabindex="0">About</a></li>
             <li><a href="#/add-story" tabindex="0">Tambah Story</a></li>
           </ul>
 
-          <!-- Button Toggle Push Notification (sudah sesuai dengan push-notification.js) -->
+          <!-- Button Toggle Push Notification -->
           <div class="nav-item">
             <button id="toggle-push" class="btn-secondary" tabindex="0">Enable Push Notifications</button>
           </div>
@@ -45,40 +43,20 @@
             <li><a href="#/register" tabindex="0">Register</a></li>
           </ul>
 
-          <ul
-            id="user-nav-list"
-            class="nav-list user-nav-list"
-            role="list"
-            style="display: none"
-          >
+          <ul id="user-nav-list" class="nav-list user-nav-list" role="list" style="display: none">
             <li><a id="logout-button" href="#" tabindex="0">Logout</a></li>
           </ul>
         </nav>
 
-        <button
-          id="drawer-button"
-          class="drawer-button"
-          aria-label="Buka menu navigasi"
-          tabindex="0"
-        >
-          ☰
-        </button>
+        <button id="drawer-button" class="drawer-button" aria-label="Buka menu navigasi" tabindex="0">☰</button>
       </div>
     </header>
 
-    <main
-      id="main-content"
-      class="main-content"
-      tabindex="-1"
-      role="main"
-    ></main>
+    <main id="main-content" class="main-content" tabindex="-1" role="main"></main>
 
     <footer>
       <div class="container footer-content">
-        <p>
-          Hak Cipta &copy; <span id="currentYear"></span> - Story Map App. Semua
-          Hak Dilindungi.
-        </p>
+        <p>Hak Cipta &copy; <span id="currentYear"></span> - Story Map App. Semua Hak Dilindungi.</p>
         <p>Dibuat dengan semangat berbagi cerita.</p>
       </div>
     </footer>
